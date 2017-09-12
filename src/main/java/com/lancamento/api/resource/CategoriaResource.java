@@ -41,7 +41,7 @@ public class CategoriaResource {
 	}
 	
 	@GetMapping("/{codigo}")
-	public Categoria buscarPeloCodigo(@PathVariable Long codigo) {
-		return categoriaRepository.findOne(codigo);
+	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
+		return categoriaRepository.exists(codigo) ? ResponseEntity.ok().body(categoriaRepository.findOne(codigo)) : ResponseEntity.notFound().build();
 	}
 }
