@@ -8,7 +8,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 
 @Entity
 public class Pessoa implements Serializable {
@@ -20,7 +19,6 @@ public class Pessoa implements Serializable {
 	private Long codigo;
 	
 	@NotNull(message = "Nome é obrigatório")
-	@Size(min = 3, max = 20)
 	private String nome;
 	
 	@NotNull(message = "Ativo é obrigatório")
