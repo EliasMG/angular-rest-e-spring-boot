@@ -14,6 +14,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 @Entity
 public class Lancamento implements Serializable {
 
@@ -25,9 +27,11 @@ public class Lancamento implements Serializable {
 	
 	private String descricao;
 	
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	@Column(name = "data_vencimento")
 	private LocalDate dataVencimento;
 	
+	@JsonFormat(pattern = "dd-MM-yyyy")
 	@Column(name = "data_pagamento")
 	private LocalDate dataPagamento;
 	
