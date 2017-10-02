@@ -21,4 +21,8 @@ public class LancamentoService {
 	public Lancamento buscarPeloCodigo(Long codigo) {
 		return lancamentoRepository.exists(codigo) ? lancamentoRepository.findOne(codigo) : null;
 	}
+	
+	public Lancamento cadastrar(Lancamento lancamento) {
+		return lancamentoRepository.save(lancamento);
+	}
 }
