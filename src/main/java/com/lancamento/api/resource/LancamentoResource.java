@@ -3,6 +3,7 @@ package com.lancamento.api.resource;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
@@ -40,7 +41,7 @@ public class LancamentoResource {
 	}
 	
 	@PostMapping
-	public ResponseEntity<Lancamento> cadastrar(@RequestBody Lancamento lancamento, HttpServletResponse response) {
+	public ResponseEntity<Lancamento> cadastrar(@Valid @RequestBody Lancamento lancamento, HttpServletResponse response) {
 		Lancamento lancamentoSalvo = lancamentoService.cadastrar(lancamento);
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, lancamentoSalvo.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(lancamentoSalvo);
