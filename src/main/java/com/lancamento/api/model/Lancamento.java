@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -25,8 +26,10 @@ public class Lancamento implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
 	
+	@NotNull(message = "Descrição é obrigatório")
 	private String descricao;
 	
+	@NotNull(message = "Data de vencimento é obrigatório")
 	@JsonFormat(pattern = "dd-MM-yyyy")
 	@Column(name = "data_vencimento")
 	private LocalDate dataVencimento;
@@ -35,17 +38,21 @@ public class Lancamento implements Serializable {
 	@Column(name = "data_pagamento")
 	private LocalDate dataPagamento;
 	
+	@NotNull(message = "Valor é obrigatório")
 	private BigDecimal valor;
 	
 	private String observacao;
 	
+	@NotNull(message = "Tipo de lançamento é obrigatório")
 	@Enumerated(EnumType.STRING)
 	private TipoLancamento tipo;
 	
+	@NotNull(message = "Categoria é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_categoria")
 	private Categoria categoria;
 	
+	@NotNull(message = "Pessoa é obrigatório")
 	@ManyToOne
 	@JoinColumn(name = "codigo_pessoa")
 	private Pessoa pessoa;
