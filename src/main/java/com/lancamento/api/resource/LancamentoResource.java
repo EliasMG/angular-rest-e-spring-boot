@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.lancamento.api.event.RecursoCriadoEvent;
 import com.lancamento.api.exceptionhandler.LancamentoExceptionHandler.Erro;
 import com.lancamento.api.model.Lancamento;
+import com.lancamento.api.repository.filter.LancamentoFilter;
 import com.lancamento.api.service.LancamentoService;
 import com.lancamento.api.service.exception.PessoaInexistenteOuInativaException;
 
@@ -40,8 +41,8 @@ public class LancamentoResource {
 	private MessageSource messageSource;
 	
 	@GetMapping
-	public List<Lancamento> listar() {
-		return lancamentoService.listar();
+	public List<Lancamento> pesquisar(LancamentoFilter lancamentoFilter) {
+		return lancamentoService.filtrar(lancamentoFilter);
 	}
 	
 	@GetMapping("/{codigo}")

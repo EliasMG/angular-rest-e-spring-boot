@@ -9,6 +9,7 @@ import com.lancamento.api.model.Lancamento;
 import com.lancamento.api.model.Pessoa;
 import com.lancamento.api.repository.LancamentoRepository;
 import com.lancamento.api.repository.PessoaRepository;
+import com.lancamento.api.repository.filter.LancamentoFilter;
 import com.lancamento.api.service.exception.PessoaInexistenteOuInativaException;
 
 @Service
@@ -20,8 +21,8 @@ public class LancamentoService {
 	@Autowired
 	private PessoaRepository pessoaRepository;
 	
-	public List<Lancamento> listar() {
-		return lancamentoRepository.findAll();
+	public List<Lancamento> filtrar(LancamentoFilter lancamentoFilter) {
+		return lancamentoRepository.filtrar(lancamentoFilter);
 	}
 	
 	public Lancamento buscarPeloCodigo(Long codigo) {
