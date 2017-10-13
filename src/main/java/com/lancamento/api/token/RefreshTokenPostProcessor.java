@@ -20,17 +20,24 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyAdvice;
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
 
 	@Override
-	public OAuth2AccessToken beforeBodyWrite(OAuth2AccessToken body, MethodParameter returnType, MediaType selectedContentType,
-			Class<? extends HttpMessageConverter<?>> selectedConverterType, ServerHttpRequest request, ServerHttpResponse response) {
+	public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
+		return returnType.getMethod().getName().equals("postAccessToken");
+	}
+	
+	@Override
+	public OAuth2AccessToken beforeBodyWrite(OAuth2AccessToken body, MethodParameter returnType,
+			MediaType selectedContentType, Class<? extends HttpMessageConverter<?>> selectedConverterType,
+			ServerHttpRequest request, ServerHttpResponse response) {
 		
 		HttpServletRequest req = ((ServletServerHttpRequest) request).getServletRequest();
 		HttpServletResponse resp = ((ServletServerHttpResponse) response).getServletResponse();
 		
-		DefaultOAuth2AccessToken bodyToken = (DefaultOAuth2AccessToken) body;
+		DefaultOAuth2AccessToken token = (DefaultOAuth2AccessToken) body;
 		
 		String refreshToken = body.getRefreshToken().getValue();
 		adicionarRefreshTokenNoCookie(refreshToken, req, resp);
-		removerRefreshTokenDoBody(bodyToken);
+		removerRefreshTokenDoBody(token);
+		
 		return body;
 	}
 
@@ -41,15 +48,11 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
 	private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletRequest req, HttpServletResponse resp) {
 		Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
 		refreshTokenCookie.setHttpOnly(true);
-		refreshTokenCookie.setSecure(false);
+		refreshTokenCookie.setSecure(false); // TODO: Mudar para true em producao
 		refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
 		refreshTokenCookie.setMaxAge(2592000);
 		resp.addCookie(refreshTokenCookie);
 	}
 
-	@Override
-	public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
-		return returnType.getMethod().getName().equals("postAccessToken");
-	}
 
 }
