@@ -22,7 +22,7 @@ INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, obser
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Bahamas', 'now', null, 500, null, 'RECEITA', 1, 2);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Top Club', 'tomorrow', null, 400.32, null, 'DESPESA', 4, 3);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Despachante', 'yesterday', null, 123.64, 'Multas', 'DESPESA', 3, 4);
-INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Pneus', 'now', null, 665.33, null, 'RECEITA', 5, 1);
+INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Pneus', 'now', null, 665.33, null, 'RECEITA', 4, 1);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Café', 'tomorrow', null, 8.32, null, 'DESPESA', 1, 2);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Eletrônicos', 'yesterday', null, 2100.32, null, 'DESPESA', 4, 4);
 INSERT INTO lancamento (descricao, data_vencimento, data_pagamento, valor, observacao, tipo, codigo_categoria, codigo_pessoa) values ('Instrumentos', 'now', null, 1040.32, null, 'DESPESA', 1, 3);
