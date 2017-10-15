@@ -29,6 +29,7 @@ import com.lancamento.api.event.RecursoCriadoEvent;
 import com.lancamento.api.exceptionhandler.LancamentoExceptionHandler.Erro;
 import com.lancamento.api.model.Lancamento;
 import com.lancamento.api.repository.filter.LancamentoFilter;
+import com.lancamento.api.repository.projection.ResumoLancamento;
 import com.lancamento.api.service.LancamentoService;
 import com.lancamento.api.service.exception.PessoaInexistenteOuInativaException;
 
@@ -49,6 +50,12 @@ public class LancamentoResource {
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter, Pageable pageable) {
 		return lancamentoService.filtrar(lancamentoFilter, pageable);
+	}
+	
+	@GetMapping(params = "resumo")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable pageable) {
+		return lancamentoService.resumir(lancamentoFilter, pageable);
 	}
 	
 	@GetMapping("/{codigo}")

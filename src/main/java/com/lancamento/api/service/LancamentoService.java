@@ -10,6 +10,7 @@ import com.lancamento.api.model.Pessoa;
 import com.lancamento.api.repository.LancamentoRepository;
 import com.lancamento.api.repository.PessoaRepository;
 import com.lancamento.api.repository.filter.LancamentoFilter;
+import com.lancamento.api.repository.projection.ResumoLancamento;
 import com.lancamento.api.service.exception.PessoaInexistenteOuInativaException;
 
 @Service
@@ -40,5 +41,9 @@ public class LancamentoService {
 	public void deletar(Long codigo) {
 		lancamentoRepository.delete(codigo);
 		
+	}
+
+	public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable pageable) {
+		return lancamentoRepository.resumir(lancamentoFilter, pageable);
 	}
 }
