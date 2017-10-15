@@ -1,0 +1,28 @@
+{
+  "hints": [],
+  "groups": [
+    {
+      "sourceType": "com.lancamento.api.config.property.LancamentoApiProperty",
+      "name": "algamoney",
+      "type": "com.lancamento.api.config.property.LancamentoApiProperty"
+    },
+    {
+      "sourceType": "com.lancamento.api.config.property.LancamentoApiProperty",
+      "name": "algamoney.seguranca",
+      "sourceMethod": "public com.lancamento.api.config.property.LancamentoApiProperty.Seguranca getSeguranca() ",
+      "type": "com.lancamento.api.config.property.LancamentoApiProperty$Seguranca"
+    }
+  ],
+  "properties": [
+    {
+      "sourceType": "com.lancamento.api.config.property.LancamentoApiProperty",
+      "name": "algamoney.origin-permitida",
+      "type": "java.lang.String"
+    },
+    {
+      "sourceType": "com.lancamento.api.config.property.LancamentoApiProperty$Seguranca",
+      "name": "algamoney.seguranca.enable-https",
+      "type": "java.lang.Boolean"
+    }
+  ]
+}
